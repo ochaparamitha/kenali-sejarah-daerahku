@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Media Pembelajaran IPAS Kelas 6 SD - Bab 3: Jejak Sang Pahlawan</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            green: '#2E7D32',
+                            lightgreen: '#E8F5E9',
+                            wood: '#8D6E63',
+                            darkwood: '#4E342E',
+                            gold: '#FFB300',
+                            cream: '#FFF8E1'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Custom Styles & Animation */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #F4F6F8;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .portal-card {
+            transition: all 0.25s ease;
+        }
+        .portal-card:active {
+            transform: scale(0.97);
+        }
+        /* Canvas layer overlay styling */
+        #matchingCanvas {
+            touch-action: none;
+        }
+        .matching-node {
+            touch-action: none;
+        }
+    </style>
+</head>
+<body class="text-slate-800 bg-amber-50/30 min-h-screen flex flex-col justify-between">
+
+    <!-- HEADER BAR -->
+    <header class="bg-gradient-to-r from-brand-darkwood via-brand-wood to-brand-green text-white p-4 shadow-md sticky top-0 z-30">
+        <div class="max-w-md mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-3">
+                <div class="p-2 bg-brand-gold rounded-full text-brand-darkwood shadow">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold leading-tight">IPAS Kelas 6 SD</h1>
+                    <p class="text-xs text-amber-200 font-medium">Bab 3: Jejak Sang Pahlawan</p>
+                </div>
+            </div>
+            <button id="btnHomeHeader" onclick="navTo('home')" class="hidden bg-white/20 hover:bg-white/30 text-white text-xs px-3 py-1.5 rounded-lg border border-white/30 flex items-center gap-1 font-semibold transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 00-1-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 00-1 1m-6 0h6" />
+                </svg>
+                Menu
+            </button>
+        </div>
+    </header>
+
+    <!-- MAIN CONTAINER -->
+    <main class="max-w-md mx-auto w-full flex-grow p-4">
+
+        <!-- DASHBOARD MENU (PORTAL SELECTION) -->
+        <div id="view-dashboard" class="space-y-4">
+            <!-- Banner Petualangan -->
+            <div class="bg-gradient-to-br from-emerald-600 to-teal-700 text-white rounded-2xl p-5 shadow-lg border-2 border-emerald-500 relative overflow-hidden">
+                <div class="relative z-10">
+                    <span class="bg-amber-400 text-brand-darkwood text-[10px] font-extrabold uppercase px-2.5 py-1 rounded-full tracking-wider shadow">Petualangan Sejarah</span>
+                    <h2 class="text-xl font-bold mt-2">Selamat Datang, Detektif Sejarah Cilik! 🕵️‍♂️</h2>
+                    <p class="text-xs text-emerald-100 mt-1 leading-relaxed">Mari menelusuri jejak perjuangan pahlawan dan sejarah daerah Nusantara serta Banua Banjarmasin!</p>
+                </div>
+                <!-- Background Pattern SVG -->
+                <svg class="absolute -right-4 -bottom-6 opacity-15 w-32 h-32" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2L2 22h20L12 2zm0 3.8L18.4 19H5.6L12 5.8z"/></svg>
+            </div>
+
+            <h3 class="font-bold text-slate-700 text-sm px-1 flex items-center gap-1.5">
+                <span class="w-2 h-2 bg-brand-green rounded-full"></span> Pilih Portal Pembelajaran:
+            </h3>
+
+            <!-- GRID MENU PORTAL -->
+            <div class="grid grid-cols-1 gap-3">
+                <!-- Portal 1 -->
+                <div onclick="navTo('portal1')" class="portal-card bg-white p-4 rounded-xl shadow-sm border-l-4 border-emerald-600 hover:shadow-md flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl font-bold flex-shrink-0">📜</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-bold text-emerald-600 uppercase tracking-wide">Portal 1</span>
+                        <h4 class="font-bold text-slate-800 text-sm">Apa Itu Sejarah Daerah?</h4>
+                        <p class="text-xs text-slate-500 line-clamp-1">Pengertian & manfaat mempelajari sejarah sekitar</p>
+                    </div>
+                </div>
+
+                <!-- Portal 2 -->
+                <div onclick="navTo('portal2')" class="portal-card bg-white p-4 rounded-xl shadow-sm border-l-4 border-amber-600 hover:shadow-md flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl font-bold flex-shrink-0">🏛️</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-bold text-amber-600 uppercase tracking-wide">Portal 2</span>
+                        <h4 class="font-bold text-slate-800 text-sm">Mengenal Peninggalan Bersejarah</h4>
+                        <p class="text-xs text-slate-500 line-clamp-1">Benteng, museum & Masjid Sultan Suriansyah</p>
+                    </div>
+                </div>
+
+                <!-- Portal 3 -->
+                <div onclick="navTo('portal3')" class="portal-card bg-white p-4 rounded-xl shadow-sm border-l-4 border-red-600 hover:shadow-md flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-red-100 text-red-700 flex items-center justify-center text-2xl font-bold flex-shrink-0">⚔️</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-bold text-red-600 uppercase tracking-wide">Portal 3</span>
+                        <h4 class="font-bold text-slate-800 text-sm">Tokoh dalam Sejarah Daerah</h4>
+                        <p class="text-xs text-slate-500 line-clamp-1">Peran pejuang lokal & Pangeran Antasari</p>
+                    </div>
+                </div>
+
+                <!-- Portal 4 -->
+                <div onclick="navTo('portal4')" class="portal-card bg-white p-4 rounded-xl shadow-sm border-l-4 border-blue-600 hover:shadow-md flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-blue-100 text-blue-700 flex items-center justify-center text-2xl font-bold flex-shrink-0">⛵</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-bold text-blue-600 uppercase tracking-wide">Portal 4</span>
+                        <h4 class="font-bold text-slate-800 text-sm">Kedatangan Bangsa Asing</h4>
+                        <p class="text-xs text-slate-500 line-clamp-1">Rempah-rempah, daya tarik & 4 negara penjajah</p>
+                    </div>
+                </div>
+
+                <!-- Portal 5 -->
+                <div onclick="navTo('portal5')" class="portal-card bg-white p-4 rounded-xl shadow-sm border-l-4 border-purple-600 hover:shadow-md flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center text-2xl font-bold flex-shrink-0">📜</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-bold text-purple-600 uppercase tracking-wide">Portal 5</span>
+                        <h4 class="font-bold text-slate-800 text-sm">Kehidupan Masa Penjajahan</h4>
+                        <p class="text-xs text-slate-500 line-clamp-1">Ekonomi, Pendidikan, Sosial, dan Budaya</p>
+                    </div>
+                </div>
+
+                <!-- Portal 6 -->
+                <div onclick="navTo('portal6')" class="portal-card bg-white p-4 rounded-xl shadow-sm border-l-4 border-teal-600 hover:shadow-md flex items-center gap-4 cursor-pointer">
+                    <div class="w-12 h-12 rounded-xl bg-teal-100 text-teal-700 flex items-center justify-center text-2xl font-bold flex-shrink-0">🔍</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-bold text-teal-600 uppercase tracking-wide">Portal 6</span>
+                        <h4 class="font-bold text-slate-800 text-sm">Cara Mengetahui Masa Lalu</h4>
+                        <p class="text-xs text-slate-500 line-clamp-1">Metode Amati – Pikirkan – Ingin Tahu</p>
+                    </div>
+                </div>
+
+                <!-- Portal 7 (Asesmen) -->
+                <div onclick="navTo('portal7')" class="portal-card bg-gradient-to-r from-amber-500 to-yellow-600 p-4 rounded-xl shadow-md border-2 border-amber-300 text-white hover:shadow-lg flex items-center gap-4 cursor-pointer mt-2">
+                    <div class="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-2xl font-bold flex-shrink-0">📝</div>
+                    <div class="flex-grow">
+                        <span class="text-[10px] font-extrabold text-amber-100 uppercase tracking-wider bg-white/20 px-2 py-0.5 rounded">Evaluasi Mandiri</span>
+                        <h4 class="font-bold text-white text-base">Portal 7: Tugas & Asesmen</h4>
+                        <p class="text-xs text-amber-100">Uji pemahamanmu dengan 15 soal formatif</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 1 CONTAINER -->
+        <div id="view-portal1" class="hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 text-emerald-600 font-bold text-xs uppercase mb-2">
+                    <span>📜 Portal 1</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Apa Itu Sejarah Daerah?</h2>
+                
+                <!-- SVG Ilustrasi Portal 1 -->
+                <div class="bg-emerald-50 rounded-xl p-4 flex justify-center items-center my-3 border border-emerald-100">
+                    <svg class="w-48 h-36" viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Peta Kuno & Buku -->
+                        <path d="M20 30 C 60 10, 140 50, 180 20 L 170 120 C 130 140, 50 100, 10 110 Z" fill="#F5E6CA" stroke="#D4A373" stroke-width="3"/>
+                        <path d="M30 45 Q 70 30 110 50 T 160 35" stroke="#C38E70" stroke-width="2" stroke-dasharray="4 3"/>
+                        <!-- Garis Teks Kuno -->
+                        <line x1="40" y1="65" x2="100" y2="65" stroke="#A98467" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="40" y1="75" x2="140" y2="75" stroke="#A98467" stroke-width="3" stroke-linecap="round"/>
+                        <line x1="40" y1="85" x2="110" y2="85" stroke="#A98467" stroke-width="3" stroke-linecap="round"/>
+                        <!-- Kaca Pembesar -->
+                        <circle cx="130" cy="85" r="22" stroke="#2E7D32" stroke-width="4" fill="white" fill-opacity="0.4"/>
+                        <line x1="145" y1="100" x2="165" y2="120" stroke="#2E7D32" stroke-width="6" stroke-linecap="round"/>
+                    </svg>
+                </div>
+
+                <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                    <div class="p-3 bg-emerald-50 border-l-4 border-emerald-600 rounded-r-lg">
+                        <strong class="text-emerald-800">Pengertian:</strong>
+                        <p class="mt-1">Sejarah Daerah adalah cerita tentang berbagai peristiwa penting yang terjadi di suatu daerah pada masa lalu.</p>
+                    </div>
+
+                    <h3 class="font-bold text-slate-800 text-base mt-4">Manfaat Mempelajari Sejarah Daerah:</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            <span class="text-emerald-600 font-bold">1.</span>
+                            <span>Mengetahui peristiwa-peristiwa penting yang terjadi di sekitar daerah kita.</span>
+                        </li>
+                        <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            <span class="text-emerald-600 font-bold">2.</span>
+                            <span>Mengenal sosok pahlawan dan tokoh yang berjasa bagi masyarakat lokal.</span>
+                        </li>
+                        <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            <span class="text-emerald-600 font-bold">3.</span>
+                            <span>Memahami bagaimana perubahan kehidupan masyarakat dari masa lalu hingga sekarang.</span>
+                        </li>
+                        <li class="flex items-start gap-2 bg-slate-50 p-2.5 rounded-lg border border-slate-100">
+                            <span class="text-emerald-600 font-bold">4.</span>
+                            <span>Menumbuhkan rasa bangga dan menghargai nilai perjuangan orang-orang terdahulu.</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 2 CONTAINER -->
+        <div id="view-portal2" class="hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 text-amber-600 font-bold text-xs uppercase mb-2">
+                    <span>🏛️ Portal 2</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Mengenal Peninggalan Bersejarah</h2>
+
+                <!-- SVG Ilustrasi Portal 2 (Masjid Sultan Suriansyah Banjarmasin) -->
+                <div class="bg-amber-50 rounded-xl p-4 flex flex-col justify-center items-center my-3 border border-amber-100 text-center">
+                    <svg class="w-52 h-36" viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Sungai Barito/Kuin Base -->
+                        <path d="M0 125 Q 100 115 200 125 L 200 140 L 0 140 Z" fill="#4FC3F7"/>
+                        <!-- Bangunan Masjid Khas Banjar Atap Tumpang Tiga -->
+                        <rect x="60" y="80" width="80" height="40" fill="#8D6E63"/>
+                        <!-- Atap Tumpang 1 (Bawah) -->
+                        <path d="M45 80 L 100 55 L 155 80 Z" fill="#4E342E"/>
+                        <!-- Atap Tumpang 2 (Tengah) -->
+                        <path d="M58 58 L 100 38 L 142 58 Z" fill="#3E2723"/>
+                        <!-- Atap Tumpang 3 (Atas/Puncak) -->
+                        <path d="M72 38 L 100 20 L 128 38 Z" fill="#2E7D32"/>
+                        <!-- Sungkul / Kubah Atas -->
+                        <circle cx="100" cy="16" r="4" fill="#FFB300"/>
+                        <!-- Pintu & Jendela -->
+                        <rect x="90" y="95" width="20" height="25" rx="10" fill="#D7CCC8"/>
+                        <rect x="70" y="92" width="12" height="15" rx="2" fill="#D7CCC8"/>
+                        <rect x="118" y="92" width="12" height="15" rx="2" fill="#D7CCC8"/>
+                    </svg>
+                    <span class="text-[11px] font-bold text-amber-800 mt-1">Masjid Sultan Suriansyah (Kuin Utara, Banjarmasin)</span>
+                </div>
+
+                <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                    <div class="p-3 bg-amber-50 border-l-4 border-amber-600 rounded-r-lg">
+                        <strong class="text-amber-900">Apa itu Peninggalan Bersejarah?</strong>
+                        <p class="mt-1">Segala benda, bangunan, atau tempat yang berasal dari masa lalu dan memiliki kaitan erat dengan peristiwa sejarah tertentu.</p>
+                    </div>
+
+                    <h3 class="font-bold text-slate-800 text-base mt-3">Bentuk-Bentuk Peninggalan:</h3>
+                    <div class="grid grid-cols-1 gap-2">
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="font-bold text-amber-700">🏛️ Museum:</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Tempat menyimpan benda-benda kuno seperti naskah tua, mahkota, dan perkakas sejarah.</p>
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
+                            <span class="font-bold text-amber-700">🏰 Benteng Pertahanan:</span>
+                            <p class="text-xs text-slate-600 mt-0.5">Bangunan tebal tempat prajurit bertahan dan berjuang dari serangan musuh pada masa perang.</p>
+                        </div>
+                        <div class="p-3 bg-amber-100/50 rounded-xl border border-amber-200">
+                            <span class="font-bold text-amber-900">🕌 Contoh Lokal Banjarmasin:</span>
+                            <p class="text-xs text-slate-700 mt-1"><strong>Masjid Sultan Suriansyah</strong> yang terletak di Kuin Utara, Banjarmasin. Merupakan masjid tertua di Kalimantan Selatan yang menjadi bukti bersejarah masuknya Islam dan berdirinya Kesultanan Banjar.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 3 CONTAINER -->
+        <div id="view-portal3" class="hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 text-red-600 font-bold text-xs uppercase mb-2">
+                    <span>⚔️ Portal 3</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Tokoh dalam Sejarah Daerah</h2>
+
+                <!-- SVG Ilustrasi Tokoh Pahlawan (Pangeran Antasari) -->
+                <div class="bg-red-50 rounded-xl p-4 flex flex-col justify-center items-center my-3 border border-red-100 text-center">
+                    <svg class="w-44 h-36" viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Background Badge -->
+                        <circle cx="80" cy="70" r="60" fill="#FFEBEE"/>
+                        <!-- Siluet Tokoh Pangeran Antasari dengan Laung (Ikat Kepala Banjar) -->
+                        <!-- Badana / Tubuh -->
+                        <path d="M40 130 C 40 100, 60 90, 80 90 C 100 90, 120 100, 120 130 Z" fill="#8D6E63"/>
+                        <!-- Wajah -->
+                        <circle cx="80" cy="65" r="22" fill="#D7CCC8"/>
+                        <!-- Laung Banjar (Khas) -->
+                        <path d="M55 58 C 55 45, 70 38, 80 38 C 90 38, 105 45, 105 58 L 108 63 L 52 63 Z" fill="#2E7D32"/>
+                        <path d="M80 35 L 88 20 L 96 38 Z" fill="#FFB300"/> <!-- Puncak Laung -->
+                        <!-- Kumis Tegas -->
+                        <path d="M70 73 Q 80 70 90 73 Q 80 78 70 73 Z" fill="#3E2723"/>
+                    </svg>
+                    <span class="text-[11px] font-bold text-red-800 mt-1">Pangeran Antasari ("Haram Menyerah Waja Sampai Kaputing")</span>
+                </div>
+
+                <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                    <div class="p-3 bg-red-50 border-l-4 border-red-600 rounded-r-lg">
+                        <strong class="text-red-900">Pengertian Tokoh Sejarah:</strong>
+                        <p class="mt-1">Orang-orang yang memiliki peran penting, memimpin, atau memberikan sumbangsih besar dalam peristiwa bersejarah di suatu daerah.</p>
+                    </div>
+
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                        <h3 class="font-bold text-slate-800 text-sm">Pahlawan dari Kalimantan Selatan:</h3>
+                        <p class="text-xs text-slate-700 leading-relaxed">
+                            <strong>Pangeran Antasari</strong> adalah pemimpin Perang Banjar yang gigih melawan penjajahan Belanda. Beliau berhasil menyatukan semangat rakyat Banjar dengan semboyan legendaris: <em>"Haram Menyerah Waja Sampai Kaputing"</em> (Berjuang sampai titik darah penghabisan).
+                        </p>
+                    </div>
+
+                    <div class="p-3 bg-amber-50 rounded-lg text-xs text-amber-900 border border-amber-200">
+                        💡 <strong>Catatan Penting:</strong> Tokoh sejarah tidak selalu pahlawan nasional berskala besar, tetapi bisa berupa tokoh lokal yang memajukan pendidikan, keagamaan, atau kesejahteraan warga daerahnya.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 4 CONTAINER -->
+        <div id="view-portal4" class="hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 text-blue-600 font-bold text-xs uppercase mb-2">
+                    <span>⛵ Portal 4</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Mengapa Bangsa Asing Datang?</h2>
+
+                <!-- SVG Ilustrasi Kapal Layar & Rempah -->
+                <div class="bg-blue-50 rounded-xl p-4 flex justify-center items-center my-3 border border-blue-100">
+                    <svg class="w-48 h-36" viewBox="0 0 200 140" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Gelombang Laut -->
+                        <path d="M0 115 Q 50 105 100 115 T 200 115 L 200 140 L 0 140 Z" fill="#0288D1"/>
+                        <!-- Kapal Samudra -->
+                        <path d="M40 105 L 160 105 L 140 125 L 60 125 Z" fill="#5D4037"/>
+                        <!-- Tiang & Layar -->
+                        <line x1="100" y1="40" x2="100" y2="105" stroke="#3E2723" stroke-width="4"/>
+                        <path d="M100 45 Q 130 60 100 85 Z" fill="#FFF9C4" stroke="#FBC02D" stroke-width="2"/>
+                        <line x1="60" y1="55" x2="60" y2="105" stroke="#3E2723" stroke-width="3"/>
+                        <path d="M60 60 Q 85 72 60 92 Z" fill="#FFF9C4" stroke="#FBC02D" stroke-width="2"/>
+                    </svg>
+                </div>
+
+                <div class="space-y-3 text-sm text-slate-700 leading-relaxed">
+                    <h3 class="font-bold text-slate-800 text-sm">Faktor Utama Kedatangan:</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="p-3 bg-blue-50 rounded-xl text-center border border-blue-100">
+                            <div class="text-2xl mb-1">🌿</div>
+                            <span class="font-bold text-xs text-blue-900">Rempah-Rempah</span>
+                            <p class="text-[11px] text-slate-600 mt-1">Kekayaan cengkeh, pala, dan lada yang melimpah.</p>
+                        </div>
+                        <div class="p-3 bg-blue-50 rounded-xl text-center border border-blue-100">
+                            <div class="text-2xl mb-1">🗺️</div>
+                            <span class="font-bold text-xs text-blue-900">Letak Strategis</span>
+                            <p class="text-[11px] text-slate-600 mt-1">Nusantara berada di jalur perniagaan dunia.</p>
+                        </div>
+                    </div>
+
+                    <h3 class="font-bold text-slate-800 text-sm mt-3">4 Bangsa Asing yang Pernah Datang:</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-slate-100 border border-slate-300 rounded-full text-xs font-semibold">1. Portugis 🇵🇹</span>
+                        <span class="px-3 py-1 bg-slate-100 border border-slate-300 rounded-full text-xs font-semibold">2. Spanyol 🇪🇸</span>
+                        <span class="px-3 py-1 bg-slate-100 border border-slate-300 rounded-full text-xs font-semibold">3. Belanda 🇳🇱</span>
+                        <span class="px-3 py-1 bg-slate-100 border border-slate-300 rounded-full text-xs font-semibold">4. Jepang 🇯🇵</span>
+                    </div>
+
+                    <div class="p-3 bg-red-50 rounded-xl border border-red-200 mt-2">
+                        <strong class="text-red-800 text-xs uppercase tracking-wide">Pengertian Penjajahan:</strong>
+                        <p class="text-xs text-slate-700 mt-1">Keadaan ketika suatu bangsa atau wilayah dikuasai sepenuhnya oleh bangsa lain, sehingga masyarakat pribumi kehilangan kebebasan mengatur kehidupannya sendiri.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 5 CONTAINER -->
+        <div id="view-portal5" class="hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 text-purple-600 font-bold text-xs uppercase mb-2">
+                    <span>📜 Portal 5</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Kehidupan Masa Penjajahan</h2>
+
+                <!-- 4 KARTU KEHIDUPAN MASYARAKAT -->
+                <div class="space-y-3">
+                    <div class="p-3.5 bg-amber-50/60 rounded-xl border border-amber-200">
+                        <div class="flex items-center gap-2 font-bold text-amber-900 text-sm mb-1">
+                            <span>💰</span> a. Kehidupan Ekonomi
+                        </div>
+                        <p class="text-xs text-slate-700">Rakyat banyak bekerja berat sebagai petani atau buruh. Hasil panen diperas melalui sistem aturan ketat seperti Tanam Paksa (Cultuurstelsel).</p>
+                    </div>
+
+                    <div class="p-3.5 bg-blue-50/60 rounded-xl border border-blue-200">
+                        <div class="flex items-center gap-2 font-bold text-blue-900 text-sm mb-1">
+                            <span>🎓</span> b. Kehidupan Pendidikan
+                        </div>
+                        <p class="text-xs text-slate-700">Kesempatan bersekolah sangat terbatas dan tidak merata. Hanya kalangan bangsawan atau anak pejabat tertentu yang diperbolehkan sekolah.</p>
+                    </div>
+
+                    <div class="p-3.5 bg-rose-50/60 rounded-xl border border-rose-200">
+                        <div class="flex items-center gap-2 font-bold text-rose-900 text-sm mb-1">
+                            <span>🤝</span> c. Kehidupan Sosial
+                        </div>
+                        <p class="text-xs text-slate-700">Terjadi pembedaan kelas masyarakat secara tidak adil. Hak dan kebebasan bergerak rakyat biasa sangat dibatasi oleh penjajah.</p>
+                    </div>
+
+                    <div class="p-3.5 bg-emerald-50/60 rounded-xl border border-emerald-200">
+                        <div class="flex items-center gap-2 font-bold text-emerald-900 text-sm mb-1">
+                            <span>🎨</span> d. Kehidupan Budaya
+                        </div>
+                        <p class="text-xs text-slate-700">Meskipun mendapat pengaruh budaya asing dari luar, adat istiadat dan kesenian daerah tetap dijaga gigih oleh masyarakat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 6 CONTAINER -->
+        <div id="view-portal6" class="hidden space-y-4">
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="flex items-center gap-2 text-teal-600 font-bold text-xs uppercase mb-2">
+                    <span>🔍 Portal 6</span>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 mb-3">Cara Mengetahui Masa Lalu</h2>
+
+                <p class="text-xs text-slate-600 mb-3">
+                    Para sejarawan bekerja layaknya <strong>Detektif Sejarah</strong> yang mengumpulkan bukti dari peninggalan seperti foto tua, dokumen, tulisan kuno, dan kesaksian saksi sejarah.
+                </p>
+
+                <!-- METODE AMATI - PIKIRKAN - INGIN TAHU -->
+                <div class="bg-slate-900 text-white p-4 rounded-xl space-y-3">
+                    <h3 class="text-amber-400 font-bold text-sm text-center border-b border-slate-700 pb-2">3 Langkah "Amati – Pikirkan – Ingin Tahu"</h3>
+                    
+                    <div class="flex items-start gap-3">
+                        <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-900 font-bold flex items-center justify-center text-xs flex-shrink-0">1</span>
+                        <div>
+                            <h4 class="font-bold text-xs text-amber-200">AMATI (Pengamatan Direct)</h4>
+                            <p class="text-[11px] text-slate-300">Perhatikan detail yang terlihat nyata pada foto/benda (contoh: pakaian, bentuk bangunan, atau ekspresi wajah).</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-900 font-bold flex items-center justify-center text-xs flex-shrink-0">2</span>
+                        <div>
+                            <h4 class="font-bold text-xs text-amber-200">PIKIRKAN (Dugaan Alasan)</h4>
+                            <p class="text-[11px] text-slate-300">Buat dugaan atau perkiraan keadaan masa itu berdasarkan fakta visual yang sudah kamu amati.</p>
+                        </div>
+                    </div>
+
+                    <div class="flex items-start gap-3">
+                        <span class="w-6 h-6 rounded-full bg-amber-500 text-slate-900 font-bold flex items-center justify-center text-xs flex-shrink-0">3</span>
+                        <div>
+                            <h4 class="font-bold text-xs text-amber-200">INGIN TAHU (Pertanyaan Lanjutan)</h4>
+                            <p class="text-[11px] text-slate-300">Tuliskan pertanyaan-pertanyaan penting yang ingin kamu telusuri lebih dalam untuk membuktikan dugaanmu.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-3 bg-teal-50 border border-teal-200 rounded-lg text-xs text-teal-900 mt-3">
+                    ⚠️ <strong>Ingat Pesan Detektif:</strong> Hasil pengamatan nyata berbeda dengan dugaan semata. Semua dugaan harus diperiksa fakta kebenarannya terlebih dahulu!
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTAL 7 CONTAINER (TUGAS FORMATIF) -->
+        <div id="view-portal7" class="hidden space-y-4">
+            
+            <!-- FORM IDENTITAS (STEP 1) -->
+            <div id="quiz-identity-card" class="bg-white p-5 rounded-2xl shadow-sm border border-slate-200">
+                <div class="text-center mb-4">
+                    <span class="text-3xl">📝</span>
+                    <h2 class="text-lg font-bold text-slate-800 mt-1">Asesmen Formatif IPAS Bab 3</h2>
+                    <p class="text-xs text-slate-500">Silakan isi identitas diri kamu terlebih dahulu sebelum memulai latihan!</p>
+                </div>
+
+                <form id="formIdentity" onsubmit="startAssessment(event)" class="space-y-4">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Nama Lengkap Siswa *</label>
+                        <input type="text" id="inputStudentName" required placeholder="Contoh: Ahmad Rizky" class="w-full px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green">
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-700 uppercase mb-1">Kelas / Rombel *</label>
+                        <input type="text" id="inputStudentClass" required placeholder="Contoh: 6A / SD Negeri Kuin 1" class="w-full px-3 py-2.5 rounded-lg border border-slate-300 text-sm focus:outline-none focus:ring-2 focus:ring-brand-green">
+                    </div>
+                    <button type="submit" class="w-full bg-brand-green hover:bg-emerald-700 text-white font-bold py-3 rounded-xl shadow-md transition text-sm">
+                        🚀 Mulai Kerjakan Asesmen
+                    </button>
+                </form>
+            </div>
+
+            <!-- LEMBAR SOAL (STEP 2) -->
+            <div id="quiz-questions-container" class="hidden space-y-6">
+                <!-- Info Header Siswa -->
+                <div class="bg-amber-100 border border-amber-300 rounded-xl p-3 flex justify-between items-center text-xs text-amber-900 font-bold">
+                    <span id="displayStudentInfo">Siswa: -</span>
+                    <span class="bg-amber-200 px-2 py-0.5 rounded">Total 15 Soal</span>
+                </div>
+
+                <!-- BAGIAN A: PILIHAN GANDA -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-5">
+                    <div class="border-b pb-2">
+                        <h3 class="font-bold text-brand-darkwood text-sm">BAGIAN A: PILIHAN GANDA (1–5)</h3>
+                        <p class="text-[11px] text-slate-500">Pilihlah satu jawaban yang paling tepat! (@5 poin)</p>
+                    </div>
+
+                    <!-- Soal 1 -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-800">1. Sejarah daerah menceritakan ....</p>
+                        <div class="space-y-1.5 text-xs">
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_1" value="A" class="text-brand-green"> A. peristiwa yang akan terjadi
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_1" value="B" class="text-brand-green"> B. peristiwa yang terjadi di daerah pada masa lalu
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_1" value="C" class="text-brand-green"> C. cerita khayalan
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_1" value="D" class="text-brand-green"> D. kegiatan sehari-hari yang baru dilakukan
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 2 -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-800">2. Berikut yang termasuk peninggalan bersejarah adalah ....</p>
+                        <div class="space-y-1.5 text-xs">
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_2" value="A" class="text-brand-green"> A. makanan yang baru dimasak
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_2" value="B" class="text-brand-green"> B. mainan yang baru dibeli
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_2" value="C" class="text-brand-green"> C. benteng peninggalan masa lalu
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_2" value="D" class="text-brand-green"> D. pakaian yang baru dijahit
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 3 -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-800">3. Salah satu alasan bangsa asing datang ke Indonesia adalah ....</p>
+                        <div class="space-y-1.5 text-xs">
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_3" value="A" class="text-brand-green"> A. Indonesia memiliki kekayaan alam dan letak strategis
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_3" value="B" class="text-brand-green"> B. Indonesia tidak memiliki sumber daya alam
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_3" value="C" class="text-brand-green"> C. Indonesia tidak memiliki penduduk
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_3" value="D" class="text-brand-green"> D. Indonesia tidak memiliki wilayah laut
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 4 -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-800">4. Tokoh yang memimpin perlawanan rakyat Banjar terhadap Belanda adalah ....</p>
+                        <div class="space-y-1.5 text-xs">
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_4" value="A" class="text-brand-green"> A. Mohammad Hatta
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_4" value="B" class="text-brand-green"> B. Ki Hadjar Dewantara
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_4" value="C" class="text-brand-green"> C. Ir. H. Juanda
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_4" value="D" class="text-brand-green"> D. Pangeran Antasari
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 5 -->
+                    <div class="space-y-2">
+                        <p class="text-xs font-bold text-slate-800">5. Ketika mengamati foto sejarah, kita perlu ....</p>
+                        <div class="space-y-1.5 text-xs">
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_5" value="A" class="text-brand-green"> A. menebak semua informasi
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_5" value="B" class="text-brand-green"> B. mengabaikan gambar
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_5" value="C" class="text-brand-green"> C. mengamati gambar dan memikirkan informasi yang ingin diketahui
+                            </label>
+                            <label class="flex items-center gap-2 p-2 rounded-lg border border-slate-200 cursor-pointer hover:bg-slate-50">
+                                <input type="radio" name="pg_5" value="D" class="text-brand-green"> D. langsung menyimpulkan tanpa mengamati
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN B: BENAR / SALAH -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-4">
+                    <div class="border-b pb-2">
+                        <h3 class="font-bold text-brand-darkwood text-sm">BAGIAN B: BENAR ATAU SALAH (6–10)</h3>
+                        <p class="text-[11px] text-slate-500">Pilihlah B jika Pernyataan Benar & S jika Salah! (@5 poin)</p>
+                    </div>
+
+                    <!-- Soal 6 -->
+                    <div class="flex items-center justify-between gap-2 text-xs border-b border-slate-100 pb-2">
+                        <span class="flex-grow font-medium">6. Sejarah daerah membantu kita mengetahui peristiwa yang terjadi pada masa lalu.</span>
+                        <div class="flex gap-2 font-bold">
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-emerald-100">
+                                <input type="radio" name="tf_6" value="B"> B
+                            </label>
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-rose-100">
+                                <input type="radio" name="tf_6" value="S"> S
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 7 -->
+                    <div class="flex items-center justify-between gap-2 text-xs border-b border-slate-100 pb-2">
+                        <span class="flex-grow font-medium">7. Benteng dan museum dapat menjadi sumber untuk mempelajari sejarah.</span>
+                        <div class="flex gap-2 font-bold">
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-emerald-100">
+                                <input type="radio" name="tf_7" value="B"> B
+                            </label>
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-rose-100">
+                                <input type="radio" name="tf_7" value="S"> S
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 8 -->
+                    <div class="flex items-center justify-between gap-2 text-xs border-b border-slate-100 pb-2">
+                        <span class="flex-grow font-medium">8. Bangsa asing tertarik datang ke Indonesia karena Indonesia tidak memiliki kekayaan alam.</span>
+                        <div class="flex gap-2 font-bold">
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-emerald-100">
+                                <input type="radio" name="tf_8" value="B"> B
+                            </label>
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-rose-100">
+                                <input type="radio" name="tf_8" value="S"> S
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 9 -->
+                    <div class="flex items-center justify-between gap-2 text-xs border-b border-slate-100 pb-2">
+                        <span class="flex-grow font-medium">9. Pada masa penjajahan, kesempatan memperoleh pendidikan belum merata bagi masyarakat.</span>
+                        <div class="flex gap-2 font-bold">
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-emerald-100">
+                                <input type="radio" name="tf_9" value="B"> B
+                            </label>
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-rose-100">
+                                <input type="radio" name="tf_9" value="S"> S
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Soal 10 -->
+                    <div class="flex items-center justify-between gap-2 text-xs pb-1">
+                        <span class="flex-grow font-medium">10. Dalam kegiatan Amati–Pikirkan–Ingin Tahu, kita tidak perlu mengajukan pertanyaan.</span>
+                        <div class="flex gap-2 font-bold">
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-emerald-100">
+                                <input type="radio" name="tf_10" value="B"> B
+                            </label>
+                            <label class="px-3 py-1 bg-slate-100 rounded border border-slate-300 cursor-pointer hover:bg-rose-100">
+                                <input type="radio" name="tf_10" value="S"> S
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- BAGIAN C: MENJODOHKAN INTERAKTIF (CANVAS TOUCH EVENT) -->
+                <div class="bg-white p-4 rounded-2xl shadow-sm border border-slate-200 space-y-3">
+                    <div class="border-b pb-2">
+                        <h3 class="font-bold text-brand-darkwood text-sm">BAGIAN C: MENJODOHKAN (11–15)</h3>
+                        <p class="text-[11px] text-slate-500">Tarik garis lurus dari titik kiri (kuning) ke titik kanan (hijau) yang tepat! (@10 poin)</p>
+                    </div>
+
+                    <button type="button" onclick="resetMatchingLines()" class="text-xs bg-slate-100 hover:bg-slate-200 text-slate-700 px-3 py-1 rounded border border-slate-300 font-semibold flex items-center gap-1">
+                        🔄 Reset Garis Menjodohkan
+                    </button>
+
+                    <!-- CONTAINER MATCHING LAYER -->
+                    <div id="matchingContainer" class="relative my-2 select-none">
+                        <!-- Canvas untuk Menggambar Garis Canvas Layer -->
+                        <canvas id="matchingCanvas" class="absolute top-0 left-0 w-full h-full pointer-events-none z-10"></canvas>
+
+                        <div class="grid grid-cols-2 gap-4 relative z-20">
+                            <!-- KOLOM KIRI (ISTILAH) -->
+                            <div class="space-y-3">
+                                <div id="left-11" data-id="11" class="matching-node bg-amber-50 border-2 border-amber-400 p-2.5 rounded-xl text-xs font-bold text-slate-800 flex justify-between items-center cursor-pointer shadow-sm">
+                                    <span>11. Sejarah daerah</span>
+                                    <span class="w-4 h-4 rounded-full bg-amber-500 border-2 border-white shadow-sm inline-block"></span>
+                                </div>
+
+                                <div id="left-12" data-id="12" class="matching-node bg-amber-50 border-2 border-amber-400 p-2.5 rounded-xl text-xs font-bold text-slate-800 flex justify-between items-center cursor-pointer shadow-sm">
+                                    <span>12. Peninggalan bersejarah</span>
+                                    <span class="w-4 h-4 rounded-full bg-amber-500 border-2 border-white shadow-sm inline-block"></span>
+                                </div>
+
+                                <div id="left-13" data-id="13" class="matching-node bg-amber-50 border-2 border-amber-400 p-2.5 rounded-xl text-xs font-bold text-slate-800 flex justify-between items-center cursor-pointer shadow-sm">
+                                    <span>13. Tokoh sejarah</span>
+                                    <span class="w-4 h-4 rounded-full bg-amber-500 border-2 border-white shadow-sm inline-block"></span>
+                                </div>
+
+                                <div id="left-14" data-id="14" class="matching-node bg-amber-50 border-2 border-amber-400 p-2.5 rounded-xl text-xs font-bold text-slate-800 flex justify-between items-center cursor-pointer shadow-sm">
+                                    <span>14. Penjajahan</span>
+                                    <span class="w-4 h-4 rounded-full bg-amber-500 border-2 border-white shadow-sm inline-block"></span>
+                                </div>
+
+                                <div id="left-15" data-id="15" class="matching-node bg-amber-50 border-2 border-amber-400 p-2.5 rounded-xl text-xs font-bold text-slate-800 flex justify-between items-center cursor-pointer shadow-sm">
+                                    <span>15. Amati</span>
+                                    <span class="w-4 h-4 rounded-full bg-amber-500 border-2 border-white shadow-sm inline-block"></span>
+                                </div>
+                            </div>
+
+                            <!-- KOLOM KANAN (KETERANGAN) -->
+                            <div class="space-y-3">
+                                <div id="right-A" data-key="A" class="matching-node bg-emerald-50 border-2 border-emerald-400 p-2.5 rounded-xl text-[11px] font-medium text-slate-800 flex items-center justify-between cursor-pointer shadow-sm min-h-[52px]">
+                                    <span class="w-4 h-4 rounded-full bg-emerald-600 border-2 border-white shadow-sm inline-block mr-1 flex-shrink-0"></span>
+                                    <span>A. Orang yang berperan penting dalam peristiwa sejarah</span>
+                                </div>
+
+                                <div id="right-B" data-key="B" class="matching-node bg-emerald-50 border-2 border-emerald-400 p-2.5 rounded-xl text-[11px] font-medium text-slate-800 flex items-center justify-between cursor-pointer shadow-sm min-h-[52px]">
+                                    <span class="w-4 h-4 rounded-full bg-emerald-600 border-2 border-white shadow-sm inline-block mr-1 flex-shrink-0"></span>
+                                    <span>B. Memperhatikan hal-hal yang terlihat pada gambar</span>
+                                </div>
+
+                                <div id="right-C" data-key="C" class="matching-node bg-emerald-50 border-2 border-emerald-400 p-2.5 rounded-xl text-[11px] font-medium text-slate-800 flex items-center justify-between cursor-pointer shadow-sm min-h-[52px]">
+                                    <span class="w-4 h-4 rounded-full bg-emerald-600 border-2 border-white shadow-sm inline-block mr-1 flex-shrink-0"></span>
+                                    <span>C. Keadaan ketika suatu bangsa/wilayah berada di bawah kekuasaan bangsa lain</span>
+                                </div>
+
+                                <div id="right-D" data-key="D" class="matching-node bg-emerald-50 border-2 border-emerald-400 p-2.5 rounded-xl text-[11px] font-medium text-slate-800 flex items-center justify-between cursor-pointer shadow-sm min-h-[52px]">
+                                    <span class="w-4 h-4 rounded-full bg-emerald-600 border-2 border-white shadow-sm inline-block mr-1 flex-shrink-0"></span>
+                                    <span>D. Cerita tentang peristiwa yang terjadi di suatu daerah pada masa lalu</span>
+                                </div>
+
+                                <div id="right-E" data-key="E" class="matching-node bg-emerald-50 border-2 border-emerald-400 p-2.5 rounded-xl text-[11px] font-medium text-slate-800 flex items-center justify-between cursor-pointer shadow-sm min-h-[52px]">
+                                    <span class="w-4 h-4 rounded-full bg-emerald-600 border-2 border-white shadow-sm inline-block mr-1 flex-shrink-0"></span>
+                                    <span>E. Benda, bangunan, atau tempat yang berkaitan dengan peristiwa masa lalu</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- TOMBOL SUBMIT FINAL -->
+                <button onclick="calculateScore()" class="w-full bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 text-white font-extrabold text-base py-3.5 rounded-xl shadow-lg transition transform active:scale-95">
+                    ✅ Selesaikan & Kirim Jawaban
+                </button>
+            </div>
+
+            <!-- HALAMAN HASIL & ASESMEN SCORE CARD (STEP 3) -->
+            <div id="quiz-result-card" class="hidden space-y-4">
+                <div class="bg-white p-5 rounded-2xl shadow-md border-2 border-brand-gold text-center space-y-3">
+                    <span class="text-4xl">🏆</span>
+                    <h2 class="text-xl font-extrabold text-slate-800">HASIL TUGAS FORMATIF</h2>
+                    
+                    <!-- TIMESTAMP BAWAAN -->
+                    <div class="bg-slate-100 p-2.5 rounded-lg text-xs text-slate-600 font-semibold space-y-0.5">
+                        <p id="resStudentInfo">Nama: - | Kelas: -</p>
+                        <p id="resTimestamp" class="text-emerald-700 font-bold">Selesai: -</p>
+                    </div>
+
+                    <!-- TAMPILAN SKOR UTAMA -->
+                    <div class="py-3 bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl border border-amber-200">
+                        <p class="text-xs text-amber-800 font-bold uppercase tracking-wider">Nilai Akhir Kamu</p>
+                        <div id="resFinalScore" class="text-5xl font-black text-amber-600 my-1">0</div>
+                        <p class="text-[11px] text-slate-500">Skor Maksimal = 100 Poin</p>
+                    </div>
+
+                    <!-- PEMBERITAHUAN UTAMA SCREENSHOT WHATSAPP -->
+                    <div class="bg-emerald-600 text-white p-4 rounded-xl shadow border-2 border-emerald-400 text-left space-y-2">
+                        <div class="flex items-center gap-2 text-amber-300 font-bold text-sm">
+                            <span class="text-lg">📸</span> INSTRUKSI PENTING SISWA:
+                        </div>
+                        <p class="text-xs leading-relaxed font-medium">
+                            <strong>HARAP SCREENSHOT / TANGKAP LAYAR HASIL INI</strong> (harus memuat Nama, Kelas, Nilai, & Jam Selesai Mengerjakan) lalu kirimkan gambarnya ke <strong>WhatsApp Pribadi Guru</strong> sebagai bukti tugas!
+                        </p>
+                    </div>
+
+                    <!-- PEMBAHASAN MATERI INTERAKTIF (TANPA BOCOR JAWABAN MENTAH) -->
+                    <div class="text-left space-y-2 pt-2">
+                        <h3 class="font-bold text-slate-800 text-xs uppercase tracking-wide">🔍 Evaluasi & Catatan Belajar:</h3>
+                        <div id="reviewList" class="space-y-2 text-xs">
+                            <!-- Generated dynamically by JS -->
+                        </div>
+                    </div>
+
+                    <button onclick="navTo('home')" class="w-full bg-slate-800 hover:bg-slate-900 text-white font-bold py-2.5 rounded-xl text-xs transition mt-2">
+                        🏠 Kembali ke Menu Utama
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-800 text-slate-400 text-center py-3 text-[11px] border-t border-slate-700 mt-6">
+        <p>© 2026 IPAS Kelas 6 SD - Bab 3 "Jejak Sang Pahlawan"</p>
+        <p class="text-slate-500">Direkayasa untuk Pembelajaran Interaktif Siswa Sekolah Dasar</p>
+    </footer>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        // GLOBAL ROUTING SYSTEM
+        function navTo(viewId) {
+            // Hide all views
+            const views = ['dashboard', 'portal1', 'portal2', 'portal3', 'portal4', 'portal5', 'portal6', 'portal7'];
+            views.forEach(v => {
+                const el = document.getElementById('view-' + v);
+                if (el) el.classList.add('hidden');
+            });
+
+            // Show selected view
+            const target = document.getElementById('view-' + viewId);
+            if (target) target.classList.remove('hidden');
+
+            // Header button visibility
+            const btnHome = document.getElementById('btnHomeHeader');
+            if (viewId === 'home' || viewId === 'dashboard') {
+                document.getElementById('view-dashboard').classList.remove('hidden');
+                btnHome.classList.add('hidden');
+            } else {
+                btnHome.classList.remove('hidden');
+            }
+
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // If switching to portal 7 matching section, trigger canvas resize
+            if (viewId === 'portal7') {
+                setTimeout(resizeCanvas, 100);
+            }
+        }
+
+        // ASSESSMENT SYSTEM STATE
+        let studentName = "";
+        let studentClass = "";
+        let matchingPairs = {}; // Stores user matching selections { '11': 'D', '12': 'E', ... }
+        let selectedLeftNode = null;
+
+        const KEY_PG = { 1: 'B', 2: 'C', 3: 'A', 4: 'D', 5: 'C' };
+        const KEY_TF = { 6: 'B', 7: 'B', 8: 'S', 9: 'B', 10: 'S' };
+        const KEY_MATCH = { '11': 'D', '12': 'E', '13': 'A', '14': 'C', '15': 'B' };
+
+        function startAssessment(e) {
+            e.preventDefault();
+            studentName = document.getElementById('inputStudentName').value.trim();
+            studentClass = document.getElementById('inputStudentClass').value.trim();
+
+            if (!studentName || !studentClass) return;
+
+            document.getElementById('displayStudentInfo').innerText = `Siswa: ${studentName} (${studentClass})`;
+            document.getElementById('quiz-identity-card').classList.add('hidden');
+            document.getElementById('quiz-questions-container').classList.remove('hidden');
+
+            initMatchingCanvas();
+        }
+
+        // ==========================================
+        // CANVAS MATCHING LOGIC (TOUCH & MOUSE EVENT)
+        // ==========================================
+        let canvas, ctx;
+
+        function initMatchingCanvas() {
+            canvas = document.getElementById('matchingCanvas');
+            if (!canvas) return;
+            ctx = canvas.getContext('2d');
+            resizeCanvas();
+
+            window.addEventListener('resize', resizeCanvas);
+
+            // Setup Nodes Click/Touch Listeners
+            const leftNodes = document.querySelectorAll('#matchingContainer [id^="left-"]');
+            const rightNodes = document.querySelectorAll('#matchingContainer [id^="right-"]');
+
+            leftNodes.forEach(node => {
+                node.addEventListener('click', () => handleLeftClick(node));
+            });
+
+            rightNodes.forEach(node => {
+                node.addEventListener('click', () => handleRightClick(node));
+            });
+        }
+
+        function resizeCanvas() {
+            if (!canvas) return;
+            const container = document.getElementById('matchingContainer');
+            if (container) {
+                canvas.width = container.offsetWidth;
+                canvas.height = container.offsetHeight;
+                drawLines();
+            }
+        }
+
+        function handleLeftClick(node) {
+            // Remove active highlight from other left nodes
+            document.querySelectorAll('#matchingContainer [id^="left-"]').forEach(n => {
+                n.classList.remove('ring-4', 'ring-amber-300');
+            });
+
+            const id = node.getAttribute('data-id');
+            selectedLeftNode = id;
+            node.classList.add('ring-4', 'ring-amber-300');
+        }
+
+        function handleRightClick(node) {
+            if (!selectedLeftNode) return;
+
+            const rightKey = node.getAttribute('data-key');
+            matchingPairs[selectedLeftNode] = rightKey;
+
+            // Clear selection ring
+            document.querySelectorAll('#matchingContainer [id^="left-"]').forEach(n => {
+                n.classList.remove('ring-4', 'ring-amber-300');
+            });
+            selectedLeftNode = null;
+
+            drawLines();
+        }
+
+        function resetMatchingLines() {
+            matchingPairs = {};
+            selectedLeftNode = null;
+            document.querySelectorAll('#matchingContainer [id^="left-"]').forEach(n => {
+                n.classList.remove('ring-4', 'ring-amber-300');
+            });
+            drawLines();
+        }
+
+        function drawLines() {
+            if (!ctx || !canvas) return;
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            const containerRect = document.getElementById('matchingContainer').getBoundingClientRect();
+
+            for (let leftId in matchingPairs) {
+                const rightKey = matchingPairs[leftId];
+
+                const leftEl = document.getElementById('left-' + leftId);
+                const rightEl = document.getElementById('right-' + rightKey);
+
+                if (leftEl && rightEl) {
+                    const leftRect = leftEl.getBoundingClientRect();
+                    const rightRect = rightEl.getBoundingClientRect();
+
+                    // Calculate relative center coordinates
+                    const x1 = leftRect.right - containerRect.left - 8;
+                    const y1 = leftRect.top + (leftRect.height / 2) - containerRect.top;
+
+                    const x2 = rightRect.left - containerRect.left + 8;
+                    const y2 = rightRect.top + (rightRect.height / 2) - containerRect.top;
+
+                    // Draw Stroke Line
+                    ctx.beginPath();
+                    ctx.moveTo(x1, y1);
+                    ctx.lineTo(x2, y2);
+                    ctx.strokeStyle = '#D97706'; // Amber line
+                    ctx.lineWidth = 3.5;
+                    ctx.stroke();
+
+                    // Draw Endpoint Dots
+                    ctx.beginPath();
+                    ctx.arc(x1, y1, 5, 0, 2 * Math.PI);
+                    ctx.arc(x2, y2, 5, 0, 2 * Math.PI);
+                    ctx.fillStyle = '#059669'; // Emerald dot
+                    ctx.fill();
+                }
+            }
+        }
+
+        // ==========================================
+        // SCORE CALCULATION & EVALUATION
+        // ==========================================
+        function calculateScore() {
+            let scorePG = 0;
+            let scoreTF = 0;
+            let scoreMatch = 0;
+
+            let reviewHTML = '';
+
+            // 1. Check PG (1-5)
+            for (let i = 1; i <= 5; i++) {
+                const selected = document.querySelector(`input[name="pg_${i}"]:checked`);
+                const val = selected ? selected.value : null;
+
+                if (val === KEY_PG[i]) {
+                    scorePG += 5;
+                    reviewHTML += `<div class="p-2 bg-emerald-50 text-emerald-900 rounded border border-emerald-200">✅ <strong>Soal #${i} (PG):</strong> Jawaban Tepat!</div>`;
+                } else {
+                    reviewHTML += `<div class="p-2 bg-rose-50 text-rose-900 rounded border border-rose-200">❌ <strong>Soal #${i} (PG):</strong> Kurang Tepat. <em>Petunjuk: Silakan baca kembali Portal ${i === 4 ? '3' : i === 3 ? '4' : '1'}!</em></div>`;
+                }
+            }
+
+            // 2. Check TF (6-10)
+            for (let i = 6; i <= 10; i++) {
+                const selected = document.querySelector(`input[name="tf_${i}"]:checked`);
+                const val = selected ? selected.value : null;
+
+                if (val === KEY_TF[i]) {
+                    scoreTF += 5;
+                    reviewHTML += `<div class="p-2 bg-emerald-50 text-emerald-900 rounded border border-emerald-200">✅ <strong>Soal #${i} (B/S):</strong> Jawaban Tepat!</div>`;
+                } else {
+                    reviewHTML += `<div class="p-2 bg-rose-50 text-rose-900 rounded border border-rose-200">❌ <strong>Soal #${i} (B/S):</strong> Kurang Tepat. <em>Petunjuk: Pahami kembali Portal ${i === 8 ? '4' : i === 9 ? '5' : i === 10 ? '6' : '1/2'}!</em></div>`;
+                }
+            }
+
+            // 3. Check Matching (11-15)
+            for (let i = 11; i <= 15; i++) {
+                const userChoice = matchingPairs[i.toString()];
+
+                if (userChoice && userChoice === KEY_MATCH[i.toString()]) {
+                    scoreMatch += 10;
+                    reviewHTML += `<div class="p-2 bg-emerald-50 text-emerald-900 rounded border border-emerald-200">✅ <strong>Soal #${i} (Menjodohkan):</strong> Pasangan Tepat!</div>`;
+                } else {
+                    reviewHTML += `<div class="p-2 bg-rose-50 text-rose-900 rounded border border-rose-200">❌ <strong>Soal #${i} (Menjodohkan):</strong> Pasangan Kurang Tepat. <em>Petunjuk: Ulas kembali ringkasan materi di Portal 1–6!</em></div>`;
+                }
+            }
+
+            const totalScore = scorePG + scoreTF + scoreMatch;
+
+            // CETAK TIMESTAMP WAKTU
+            const now = new Date();
+            const days = ['Minggu', 'Senin', 'Selasa', 'Rabu', 'Kamis', 'Jumat', 'Sabtu'];
+            const months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+
+            const dayName = days[now.getDay()];
+            const dateNum = now.getDate();
+            const monthName = months[now.getMonth()];
+            const yearNum = now.getFullYear();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+
+            const timestampStr = `Selesai: ${dayName}, ${dateNum} ${monthName} ${yearNum}, Pukul ${hours}.${minutes} WITA`;
+
+            // Display Results
+            document.getElementById('resStudentInfo').innerText = `Nama: ${studentName} | Kelas: ${studentClass}`;
+            document.getElementById('resTimestamp').innerText = timestampStr;
+            document.getElementById('resFinalScore').innerText = totalScore;
+            document.getElementById('reviewList').innerHTML = reviewHTML;
+
+            // Switch Screen
+            document.getElementById('quiz-questions-container').classList.add('hidden');
+            document.getElementById('quiz-result-card').classList.remove('hidden');
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Initialize default view on window load
+        window.onload = function() {
+            navTo('home');
+        };
+    </script>
+</body>
+</html>
